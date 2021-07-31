@@ -1,0 +1,22 @@
+<svg id="Logo" xmlns="http://www.w3.org/2000/svg" width="157.06" height="163.306" viewBox="0 0 157.06 163.306">
+  <g id="Raggruppa_11" data-name="Raggruppa 11" transform="translate(0 4.232)">
+    <path id="Tracciato_5" data-name="Tracciato 5" d="M307.973,483.925c-27.144,12.271-44.463,38.453-44.463,67.217,0,41.018,34.745,74.319,77.54,74.319s77.54-33.3,77.54-74.319c0-28.765-17.319-54.947-44.463-67.217l-4.483,9.11c23.465,10.607,38.437,33.241,38.437,58.108,0,35.458-30.035,64.247-67.031,64.247s-67.031-28.788-67.031-64.247c0-24.866,14.971-47.5,38.437-58.108Z" transform="translate(-263.51 -483.925)" fill="#f8969c" fill-rule="evenodd"/>
+  </g>
+  <g id="Raggruppa_13" data-name="Raggruppa 13" transform="translate(6.54)">
+    <g id="Raggruppa_67" data-name="Raggruppa 67" transform="translate(-806.547 -457.252)">
+      <path id="Tracciato_2" data-name="Tracciato 2" d="M875.991,457.252s-34.2,56.441-34.2,80.63c0,15.124,15.326,27.4,34.2,27.4s34.2-12.278,34.2-27.4C910.195,513.692,875.991,457.252,875.991,457.252Z" fill="#fccece" fill-rule="evenodd"/>
+    </g>
+    <text id="Spa" transform="translate(2 87)" fill="#262626" font-size="126" font-family="SavoyeLetPlain, Savoye LET"><tspan x="0" y="0">Spa</tspan></text>
+  </g>
+  <g id="Raggruppa_14" data-name="Raggruppa 14" transform="translate(0.06 119.307)">
+    <text id="CENTER" transform="translate(0 30)" fill="#262626" font-size="32" font-family="ShreeDev0714, 'Shree Devanagari \37 14'" letter-spacing="0.22em"><tspan x="0" y="0">CENTER</tspan></text>
+  </g>
+  <g id="Raggruppa_17" data-name="Raggruppa 17" transform="translate(135.482 103.27)">
+    <g id="Raggruppa_15" data-name="Raggruppa 15" transform="translate(-128.301 3.6)">
+      <path id="Tracciato_7" data-name="Tracciato 7" d="M384.018,202.466a.442.442,0,0,0,.37.489H440.4a.442.442,0,0,0,.37-.489v-.977a.442.442,0,0,0-.37-.489H384.388a.442.442,0,0,0-.37.489Z" transform="translate(-390.14 -201)" fill="#262626" fill-rule="evenodd"/>
+    </g>
+    <g id="Raggruppa_16" data-name="Raggruppa 16" transform="translate(-64.887 3.6)">
+      <path id="Tracciato_8" data-name="Tracciato 8" d="M480.822,202.466a.469.469,0,0,0,.447.489h84.923a.47.47,0,0,0,.447-.489v-.977a.47.47,0,0,0-.447-.489H481.269a.469.469,0,0,0-.447.489Z" transform="translate(-480.822 -201)" fill="#262626" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

@@ -1,4 +1,6 @@
-<?php include "functions/layout.php";
+<?php 
+include "functions/layout.php";
+include "./data/data.php";
 $title = $title ?? "";
 
 define("APPNAME", "web-app");
@@ -32,3 +34,6 @@ $invertiCard = true;
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+<body id="my-body">
+<?php 
+echo printSection($topBar); 

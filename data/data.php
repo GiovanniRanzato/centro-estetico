@@ -64,15 +64,15 @@ $sectionFeatures =  array(
             "features" => [
                 array(
                     "title" => "welness",
-                    "icon" => "hand-holding-heart",
+                    "icon" => "fas fa-hand-holding-heart",
                 ),
                 array(
                     "title" => "beauty",
-                    "icon" => "palette",
+                    "icon" => "fas fa-palette",
                 ),
                 array(
                     "title" => "comfort",
-                    "icon" => "couch",
+                    "icon" => "fas fa-couch",
                 ),
             ]
         )
@@ -169,104 +169,149 @@ $sectionReviews =  array(
     "id" => "my-section-reviews",
     "class" => "cs-section-reviews",
     "addContainer" => "container",
-    "data" =>  array(
-        "class" => "cs-section-reviews-contents",
-        "contents" => [
-            array(
-                "class" => "gg",
-                "layoutFunction" => "printCard",
-                "header" => "ff",
-                "body" => "ff",
-                "footer" => "ff",
-            ),
-            array(
-                "class" => "gg",
-                "layoutFunction" => "printCard",
-                "header" => "ff",
-                "body" => "ff",
-                "footer" => "ff",
-            ),
-            array(
-                "class" => "gg",
-                "layoutFunction" => "printCard",
-                "header" => "ff",
-                "body" => "ff",
-                "footer" => "ff",
-            ),
-        ]
-       
+    "dataType" => "html",
+    "data" =>  printInlineList(
+        array(
+            "class" => "cs-section-reviews-contents",
+            "brakePointType" => "",
+            "elements" => [
+                printCard(array(
+                    "header" => "1",
+                    "body" => "2",
+                    "footer" => "2",
+
+                )),
+                printCard(array(
+                    "header" => "1",
+                    "body" => "2",
+                    "footer" => "2",
+
+                )),
+                printCard(array(
+                    "header" => "1",
+                    "body" => "2",
+                    "footer" => "2",
+
+                )),
+            ]
+
+        )
     )
 );
 
 
-// NAV
-$mainNav =  array(
-    "id" => "my-nav",
-    "class" => "cs-nav",
-    "addContainer" => "container",
-    "data" =>  array(
-        "class" => "cs-nav-contents",
-        "contents" => [
-            array(
-                "class" => "cs-nav",
-                "layoutFunction" => "printNav",
+// HEADER
+$topBar = array(
+    "id" => "my-top-bar",
+    "class" => "cs-top-bar",
+    "sectionTag" => "header",
+    "dataType" => "html",
+    "data" =>  printTopBar(
+        array(
+            "class" => "cs-top-bar-contents",
+            "logoLink" => array (
+                "url" => "#",
+                "media" => array(
+                    "src" => "img/svg/logo.svg
+                    ",
+                    "title" => "logo",
+                ),
+            ),
+            "topNav" => array(
                 "navitems" => [
                     array(
                         "id" => "navitem_1",
-                        "class" => "",
-                        "link" => array (
+                        "active" => true,
+                        "link" => array(
+                            "class" => "cs-topnav-link",
                             "url" => "#",
-                            "label" => "menu 1",
+                            "label" => "info@spacenter.it",
+                            "icon" => "fas fa-envelope"
                         )
                     ),
                     array(
                         "id" => "navitem_2",
-                        "class" => "",
-                        "link" => array (
+                        "link" => array(
+                            "class" => "cs-topnav-link",
                             "url" => "#",
-                            "label" => "menu 2",
+                            "label" => "Via roma 10, Abano terme 350001 (PD)",
+                            "icon" => "fas fa-map-marker"
                         )
                     ),
                     array(
                         "id" => "navitem_3",
-                        "class" => "",
-                        "link" => array (
+                        "link" => array(
+                            "class" => "cs-topnav-link",
                             "url" => "#",
-                            "label" => "menu 3",
-                        ),
-                        "submenu" => array(
-                            "class" => "cs-nav-sub",
-                            "navitems" => [
-                                array(
-                                    "id" => "navitem_sub_1",
-                                    "class" => "",
-                                    "link" => array (
-                                        "url" => "#",
-                                        "label" => "sub menu 1",
-                                    )
-                                ),
-                                array(
-                                    "id" => "navitem_sub_2",
-                                    "class" => "",
-                                    "link" => array (
-                                        "url" => "#",
-                                        "label" => "sub menu 2",
-                                    )
-                                ),
-                                array(
-                                    "id" => "navitem_sub_3",
-                                    "class" => "",
-                                    "link" => array (
-                                        "url" => "#",
-                                        "label" => "sub menu 3",
-                                    ),
-                                ),
-                            ] 
+                            "label" => "+39  049 123456789",
+                            "icon" => "fas fa-phone"
                         ),
                     ),
-                ] 
+                ]
             ),
-        ]
-       
+            "socialNav" => array(
+                "navitems" => [
+                    array(
+                        "id" => "social_1",
+                        "link" => array(
+                            "class" => "cs-social-link",
+                            "url" => "#",
+                            "icon" => "fab fa-instagram",
+                        )
+                    ),
+                    array(
+                        "id" => "social_1",
+                        "link" => array(
+                            "class" => "cs-social-link",
+                            "url" => "#",
+                            "icon" => "fab fa-facebook-f",
+                        ),
+                    ),
+                    array(
+                        "id" => "social_1",
+                        "link" => array(
+                            "class" => "cs-social-link",
+                            "url" => "#",
+                            "icon" => "fab fa-pinterest-p",
+                        ),
+                    ),
+                ],
+            ),
+            "mainNav" => array(
+                "navitems" => [
+                    array(
+                        "id" => "navitem_1",
+                        "active" => true,
+                        "link" => array(
+                            "url" => "#",
+                            "label" => "Home",
+                        )
+                    ),
+                    array(
+                        "id" => "navitem_2",
+                        "link" => array(
+                            "url" => "#",
+                            "label" => "Servizi",
+                        )
+                    ),
+                    array(
+                        "id" => "navitem_3",
+                        "link" => array(
+                            "url" => "#",
+                            "label" => "Chi siamo",
+                        ),
+                    ),
+                    array(
+                        "id" => "navitem_4",
+                        "link" => array(
+                            "url" => "#",
+                            "label" => "Contatti",
+                        ),
+                    ),
+                ]
+            )
+        )
+
     )
+
 );
