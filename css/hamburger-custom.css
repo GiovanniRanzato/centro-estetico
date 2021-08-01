@@ -1,0 +1,23 @@
+.hamburger-container {
+    position: absolute;
+    z-index: 50000;
+    right: 0;
+    top: 0;
+    margin: 1rem;
+}
+
+.hamburger {
+    position:absolute;
+    right: 0;
+    top: 0;
+    transition: all 0.3s ease-in-out;
+}
+.hamburger{
+    padding: 0;
+}
+.hamburger-inner,
+.hamburger-inner::after,
+.hamburger-inner::before{
+    background-color: var(--primary) !important;
+    height: var(--line-width)!important;
+} 

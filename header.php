@@ -22,14 +22,17 @@ $invertiCard = true;
     <title><?php echo $title ?></title>
     <!-- font awesome -->
     <script src="https://kit.fontawesome.com/b2fa7f74dd.js" crossorigin="anonymous"></script>
-
+    <!-- hamburgers CSS -->
+    <link href="plugins/hamburgers/hamburgers.min.css" rel="stylesheet">
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- bootstrap css -->
+    <!-- bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- hamburgers Custom CSS -->
+    <link href="css/hamburger-custom.css" rel="stylesheet">
 
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css">

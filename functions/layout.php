@@ -54,7 +54,10 @@ function printContents($props)
     <div class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
         <?php
         foreach ($contents as $content) {
-            echo $content["layoutFunction"]($content);
+            if (isset($content["layoutFunction"]) && $content["layoutFunction"])
+                echo $content["layoutFunction"]($content);
+            else
+                echo $content;
         }
         ?>
     </div>
@@ -120,9 +123,11 @@ function printMainArticle($props)
                     echo printTitle($title);
                 if ($text)
                     echo printText($text);
-                if ($action)
-                    echo printBtn($action);
-                ?>
+                if ($action) { ?>
+                    <div class="cs-main-article-contents-actions">
+                        <?php echo printBtn($action); ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
     </div>
@@ -197,56 +202,64 @@ function printTopBar($props)
 {
     $class = isset($props["class"]) ? $props["class"] : "";
     $logoLink = isset($props["logoLink"]) ? $props["logoLink"] : [];
-    $logoLink["class"] = isset ($logoLink["class"]) ? $logoLink["class"] : "cs-logo";
+    $logoLink["class"] = isset($logoLink["class"]) ? $logoLink["class"] : "cs-logo";
     $topNav = isset($props["topNav"]) ? $props["topNav"] : [];
     $socialNav = isset($props["socialNav"]) ? $props["socialNav"] : [];
     $mainNav = isset($props["mainNav"]) ? $props["mainNav"] : [];
 
-    
+
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
 
-    <div class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?> >
-    <div class="cs-top-nav">
-        <?php echo printNav($topNav); ?>
-        <?php echo printNav($socialNav); ?>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <?php echo printLink($logoLink); ?>
-            </div>
-            <div class="col-md-10 cs-main-nav">
-                <?php echo printNav($mainNav); ?>
+    <div class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-2">
+                    <?php echo printLink($logoLink); ?>
+                </div>
+                <div class="col-lg-10">
+                    <div class="cs-top-nav">
+                        <?php echo printNav($topNav); ?>
+                        <?php echo printNav($socialNav); ?>
+                    </div>
+                    <div class="cs-main-nav">
+                        <?php echo printNav($mainNav); ?>
+                    </div>
+                    <div class="cs-menu-toggler hamburger-container">
+                        <button id="hamburger" class="hamburger hamburger--collapse menu-toggler " type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-<?php return  ob_get_clean();
+    <?php return  ob_get_clean();
 }
 
 
 // INLINE CARD LIST
 // @props
 // "class" => string css class,
-// "brakePointType" => string with bootstrap breakpoint type
-// "elements" => array of html string with element contents,
+
 function printAvatarCardHeader($props)
 {
     $class = isset($props["class"]) ? $props["class"] : "";
     $title = isset($props["title"]) ? $props["title"] : [];
     $media = isset($props["media"]) ? $props["media"] : [];
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
-
+    $media["class"] = isset($media["class"]) ? "cs-avatar " . $media["class"] : "cs-avatar";
     ob_start(); ?>
-    <div class="cs-avatar-card-headder<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-        <?php
-        echo printMedia($media);
-        echo printTitle($title);
-        ?>
-    </div>
-<?php return  ob_get_clean();
+        <div class="cs-avatar-card-header <?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php
+            echo printMedia($media);
+            echo printTitle($title);
+            ?>
+        </div>
+    <?php return  ob_get_clean();
 }
 
 
@@ -263,15 +276,15 @@ function printMessage($props)
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
-    <div class="row" <?php echo printArrayOptions($htmlOptions) ?>>
-        <div class="col">
-            <?php echo $icon ? "<i class=\"fas fa-$icon\"></i>" : ''; ?>
-            <div class="alert alert-<?php echo $type; ?>" role="alert">
-                <?php echo $message; ?>
+        <div class="row" <?php echo printArrayOptions($htmlOptions) ?>>
+            <div class="col">
+                <?php echo $icon ? "<i class=\"fas fa-$icon\"></i>" : ''; ?>
+                <div class="alert alert-<?php echo $type; ?>" role="alert">
+                    <?php echo $message; ?>
+                </div>
             </div>
         </div>
-    </div>
-<?php return  ob_get_clean();
+    <?php return  ob_get_clean();
 }
 
 // CARD
@@ -284,35 +297,35 @@ function printMessage($props)
 function printCard($props)
 {
     $class = isset($props["class"]) ? $props["class"] : "";
-
     $header = isset($props["header"]) ? $props["header"] : "";
     $body = isset($props["body"]) ? $props["body"] : "";
     $footer = isset($props["footer"]) ? $props["footer"] : "";
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+    $type = isset($props["type"]) ? "-" . $props["type"] : "";
 
     ob_start(); ?>
-    <div class="cs-card  <?php echo $class ?? ""; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+        <div class="cs-card  <?php echo $class ?? ""; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
 
-        <?php if ($header) { ?>
-            <div class="cs-card-header">
-                <?php echo $props["header"]; ?>
-            </div>
-        <?php } ?>
+            <?php if ($header) { ?>
+                <div class="cs-card-header<?php echo $type; ?>">
+                    <?php echo $props["header"]; ?>
+                </div>
+            <?php } ?>
 
-        <?php if ($body) { ?>
-            <div class="cs-card-body">
-                <?php echo $props["body"]; ?>
-            </div>
-        <?php } ?>
+            <?php if ($body) { ?>
+                <div class="cs-card-body<?php echo $type; ?>">
+                    <?php echo $props["body"]; ?>
+                </div>
+            <?php } ?>
 
-        <?php if ($footer) { ?>
-            <div class="cs-card-footer">
-                <?php echo $props["footer"]; ?>
-            </div>
-        <?php } ?>
-    </div>
+            <?php if ($footer) { ?>
+                <div class="cs-card-footer<?php echo $type; ?>">
+                    <?php echo $props["footer"]; ?>
+                </div>
+            <?php } ?>
+        </div>
 
-<?php return  ob_get_clean();
+    <?php return  ob_get_clean();
 }
 
 // MEDIA
@@ -330,10 +343,10 @@ function printMedia($props)
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
-    <div id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-        <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
-    </div>
-<?php return  ob_get_clean();
+        <div id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
+        </div>
+    <?php return  ob_get_clean();
 }
 
 // NAV
@@ -350,13 +363,13 @@ function printNav($props)
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
-    <ul id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-        <?php
-        foreach ($navitems as $navitem) {
-            echo printNavItem($navitem);
-        } ?>
-    </ul>
-<?php return  ob_get_clean();
+        <ul id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php
+            foreach ($navitems as $navitem) {
+                echo printNavItem($navitem);
+            } ?>
+        </ul>
+    <?php return  ob_get_clean();
 }
 
 // NAVITEM
@@ -372,17 +385,17 @@ function printNavItem($props)
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
     $navLinkClass = "cs-nav-link";
     ob_start(); ?>
-    <li id="<?php echo $id; ?>" class="<?php echo $class; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-        <?php
-        $props["link"]["class"] = isset($props["link"]["class"]) ? $props["link"]["class"] : $navLinkClass;
-        $props["link"]["class"] .= isset($props["active"]) && $props["active"] ? " active" : "";
-        echo printLink($props["link"]);
-        if (isset($props["submenu"])) {
-            echo printNav($props["submenu"]);
-        }
-        ?>
-    </li>
-<?php return  ob_get_clean();
+        <li id="<?php echo $id; ?>" class="<?php echo $class; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php
+            $props["link"]["class"] = isset($props["link"]["class"]) ? $props["link"]["class"] : $navLinkClass;
+            $props["link"]["class"] .= isset($props["active"]) && $props["active"] ? " active" : "";
+            echo printLink($props["link"]);
+            if (isset($props["submenu"])) {
+                echo printNav($props["submenu"]);
+            }
+            ?>
+        </li>
+    <?php return  ob_get_clean();
 }
 
 // BTN
@@ -414,17 +427,17 @@ function printLink($props)
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
-    <a id="<?php echo $id ?>" class="<?php echo $class ?>" href="<?php echo $url ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-        <?php echo printIcon($icon);
-        if ($label) { ?>
-            <span><?php echo $label ?></span>
-        <?php } 
-        if ($media) {
-            echo printImg($media);
-        } ?>
+        <a id="<?php echo $id ?>" class="<?php echo $class ?>" href="<?php echo $url ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php echo printIcon($icon);
+            if ($label) { ?>
+                <span><?php echo $label ?></span>
+            <?php }
+            if ($media) {
+                echo printImg($media);
+            } ?>
 
-    </a>
-<?php return  ob_get_clean();
+        </a>
+    <?php return  ob_get_clean();
 }
 
 
@@ -435,7 +448,7 @@ function printIcon($icon)
 {
     if (!$icon) return;
     ob_start(); ?>
-    <i class="<?php echo $icon ?>"></i>
+        <i class="<?php echo $icon ?>"></i>
     <?php return  ob_get_clean();
 }
 
@@ -450,15 +463,9 @@ function printImg($props)
     $src = isset($props["src"]) ? $props["src"] : "";
 
     ob_start(); ?>
-    <img 
-        id="<?php echo $id ?>"
-        class="<?php echo $class ?>"
-        src="<?php echo $src ?>" 
-        alt="<?php echo $title ?>" >
+    <img id="<?php echo $id ?>" class="<?php echo $class ?>" src="<?php echo $src ?>" alt="<?php echo $title ?>">
     <?php return  ob_get_clean();
 }
-
-
 
 // TEXT
 // @props

@@ -2,13 +2,20 @@
 $title = "index";
 include "header.php";
 ?>
-<div style="height:800px; background:#FCCECE"></div>
+<section id="my-section-hero" style="height:800px; background:#FCCECE">
+    <div>
+        <h1>CSPA</h1>
+        <p>Lorem ipsum</p>
+    </div>
+
+</section>
 <?php
 echo printSection($sectionAbout);
 echo printSection($sectionSlogan);
 echo printSection($sectionFeatures);
 echo printSection($sectionServices);
 echo printSection($sectionReviews);
+echo printSection($sectionList);
 ?>
 
 <?php include "footer.php"; ?>

@@ -13,7 +13,6 @@ $sectionAbout =  array(
                 "title" => array(
                     "title" => "Spa center",
                     "caption" => "about",
-                    // "class" => "mb-4",
                     "heading" => 2,
                     "decoration" => "cs-title-line"
                 ),
@@ -170,29 +169,67 @@ $sectionReviews =  array(
     "class" => "cs-section-reviews",
     "addContainer" => "container",
     "dataType" => "html",
-    "data" =>  printInlineList(
+    "data" =>  printContents(
         array(
             "class" => "cs-section-reviews-contents",
-            "brakePointType" => "",
-            "elements" => [
+            "contents" => [
                 printCard(array(
-                    "header" => "1",
-                    "body" => "2",
+                    "header" => printAvatarCardHeader (
+                        array(
+                        "media" => array(
+                            "id" => "img-1",
+                            "title" => "img-1",
+                            "src" => "img/about.jpg",
+                        ),
+                        "title" => array(
+                            "title" => "Laura Celeste",
+                            "caption" => "makeup artist",
+                            "heading" => 4,
+                            "decoration" => "cs-title-line"
+                        ),
+                    )),
+                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
                     "footer" => "2",
-
+                    "type" => "sm",
                 )),
                 printCard(array(
-                    "header" => "1",
-                    "body" => "2",
+                    "header" => printAvatarCardHeader (
+                        array(
+                        "media" => array(
+                            "id" => "img-1",
+                            "title" => "img-1",
+                            "src" => "img/about.jpg",
+                        ),
+                        "title" => array(
+                            "title" => "Laura Celeste",
+                            "caption" => "makeup artist",
+                            "heading" => 4,
+                            "decoration" => "cs-title-line"
+                        ),
+                    )),
+                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
                     "footer" => "2",
-
+                    "type" => "sm",
                 )),
                 printCard(array(
-                    "header" => "1",
-                    "body" => "2",
+                    "header" => printAvatarCardHeader (
+                        array(
+                        "media" => array(
+                            "id" => "img-1",
+                            "title" => "img-1",
+                            "src" => "img/about.jpg",
+                        ),
+                        "title" => array(
+                            "title" => "Laura Celeste",
+                            "caption" => "makeup artist",
+                            "heading" => 4,
+                            "decoration" => "cs-title-line"
+                        ),
+                    )),
+                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
                     "footer" => "2",
-
-                )),
+                    "type" => "sm",
+                )), 
             ]
 
         )
@@ -314,4 +351,40 @@ $topBar = array(
 
     )
 
+);
+
+// LIST
+$sectionList =  array(
+    "id" => "my-section-reviews",
+    "class" => "cs-section-reviews",
+    "addContainer" => "container",
+    "dataType" => "html",
+    "data" =>  printInlineList(
+        array(
+            "class" => "cs-section-reviews-contents",
+            "brakePointType" => "",
+            "elements" => [
+                printCard(array(
+                    "header" => "Header1",
+                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
+                    "footer" => "2",
+                    "type" => "sm",
+                )),
+                printCard(array(
+                    "header" => "Header1",
+                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
+                    "footer" => "2",
+                    "type" => "sm",
+                )),
+                printCard(array(
+                    "header" => "Header1",
+                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
+                    "footer" => "2",
+                    "type" => "sm",
+                )),
+ 
+            ]
+
+        )
+    )
 );
