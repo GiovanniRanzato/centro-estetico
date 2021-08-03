@@ -6,7 +6,6 @@
 // "data" => string html for contents or structured array with data contents
 // "dataType" => "string" ("html" to print preformatted html string "structureData" to print structured data array with layout functions)
 // "htmlOptions" => array(options for wrapper)
-// )
 function printSection($props)
 {
     $id = isset($props["id"]) ? $props["id"] : "";
@@ -245,332 +244,344 @@ function printTopBar($props)
 // @props
 // "class" => string css class,
 // "logoLink" => array with structured  data for link
-// "conctactsnav" => array with structured  data for nav
-// "socialnav" => array with structured  data for nav
-// "servicesnav" => array with structured  data for nav
+// "nav1" => array with structured  data for nav
+// "nav2" => array with structured  data for nav
+// "nav3" => array with structured  data for nav
 function printFooter($props)
 {
-    $class = isset($props["class"]) ? $props["class"] : "";
-    $logo = isset($props["logo"]) ? $props["logo"] : [];
-    $logoLink["class"] = isset($logoLink["class"]) ? $logoLink["class"] : "cs-logo";
-    $nav1 = isset($props["nav1"]) ? $props["nav1"] : [];
-    $nav2 = isset($props["nav2"]) ? $props["nav2"] : [];
-    $nav3 = isset($props["nav3"]) ? $props["nav3"] : [];
+$class = isset($props["class"]) ? $props["class"] : "";
+$logo = isset($props["logo"]) ? $props["logo"] : [];
+$nav1 = isset($props["nav1"]) ? $props["nav1"] : [];
+$nav2 = isset($props["nav2"]) ? $props["nav2"] : [];
+$nav3 = isset($props["nav3"]) ? $props["nav3"] : [];
+$copyright = isset($props["copyright"]) ? $props["copyright"] : "";
+$privacyLink = isset($props["privacyLink"]) ? $props["privacyLink"] : "";
+$cookieLink = isset($props["cookieLink"]) ? $props["cookieLink"] : "";
 
+$htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+
+ob_start(); ?>
+
+    <div class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+        <div class="container">
+            <div class="cs-footer-logo">
+                <?php echo printMedia($logo); ?>
+            </div>
+            <div class="row cs-footer-navs">
+                <div class="col-lg-3 col-md-6">
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($nav1, true); ?>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($nav2, true); ?>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($nav3, true); ?>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($nav3, true); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cs-second-footer">
+            <div class="container">
+                <div class="cs-second-footer-contents">
+                    <span><?php echo $copyright; ?></span>
+                    <span><?php echo printLink($privacyLink)." - ".printLink($cookieLink); ?></span>
+                </div>
+            </div>
+        </div>
+    <?php return  ob_get_clean();
+}
+
+// INLINE CARD LIST
+// @props
+// "class" => string css class,
+
+function printAvatarCardHeader($props)
+{
+    $class = isset($props["class"]) ? $props["class"] : "";
+    $title = isset($props["title"]) ? $props["title"] : [];
+    $media = isset($props["media"]) ? $props["media"] : [];
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+    $media["class"] = isset($media["class"]) ? "cs-avatar " . $media["class"] : "cs-avatar";
+    ob_start(); ?>
+        <div class="cs-avatar-card-header <?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php
+            echo printMedia($media);
+            echo printTitle($title);
+            ?>
+        </div>
+    <?php return  ob_get_clean();
+}
+
+
+// MESSAGE
+// @props
+// "message" => string text message,
+// "icon" => string fa-icon class name,
+// "type" => string bootstrap color type,
+function printMessage($props)
+{
+    $message = isset($props["message"]) ? $props["message"] : "";
+    $type = isset($props["type"]) ? $props["type"] : "info";
+    $icon = isset($props["icon"]) ? $props["icon"] : "";
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
-
-        <div class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-            <div class="container">
-                <div class="cs-footer-logo">
-                    <?php echo printMedia($logo); ?>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6">
-                        <div class="cs-footer-nav">
-                            <?php echo printNav($nav1, true); ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="cs-footer-nav">
-                            <?php echo printNav($nav2, true); ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="cs-footer-nav">
-                            <?php echo printNav($nav3, true); ?>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6">
-                        <div class="cs-footer-nav">
-                            <?php echo printNav($nav3, true); ?>
-                        </div>
-                    </div>
+        <div class="row" <?php echo printArrayOptions($htmlOptions) ?>>
+            <div class="col">
+                <?php echo $icon ? "<i class=\"fas fa-$icon\"></i>" : ''; ?>
+                <div class="alert alert-<?php echo $type; ?>" role="alert">
+                    <?php echo $message; ?>
                 </div>
             </div>
-        <?php return  ob_get_clean();
-    }
+        </div>
+    <?php return  ob_get_clean();
+}
 
-    // INLINE CARD LIST
-    // @props
-    // "class" => string css class,
+// CARD
+// @props
+// "header" => "string  header content",
+// "body" => "string  body content",
+// "footer" => "string  footer content"
+// "leftBorder" => "string  left border bootstrap color type (see sustom css for supported)"
+// "class" => "string css class added to defauls classes",
+function printCard($props)
+{
+    $class = isset($props["class"]) ? $props["class"] : "";
+    $header = isset($props["header"]) ? $props["header"] : "";
+    $body = isset($props["body"]) ? $props["body"] : "";
+    $footer = isset($props["footer"]) ? $props["footer"] : "";
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+    $type = isset($props["type"]) ? "-" . $props["type"] : "";
 
-    function printAvatarCardHeader($props)
-    {
-        $class = isset($props["class"]) ? $props["class"] : "";
-        $title = isset($props["title"]) ? $props["title"] : [];
-        $media = isset($props["media"]) ? $props["media"] : [];
-        $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
-        $media["class"] = isset($media["class"]) ? "cs-avatar " . $media["class"] : "cs-avatar";
-        ob_start(); ?>
-            <div class="cs-avatar-card-header <?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-                <?php
-                echo printMedia($media);
-                echo printTitle($title);
-                ?>
-            </div>
-        <?php return  ob_get_clean();
-    }
+    ob_start(); ?>
+        <div class="cs-card  <?php echo $class ?? ""; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
 
-
-    // MESSAGE
-    // @props
-    // "message" => string text message,
-    // "icon" => string fa-icon class name,
-    // "type" => string bootstrap color type,
-    function printMessage($props)
-    {
-        $message = isset($props["message"]) ? $props["message"] : "";
-        $type = isset($props["type"]) ? $props["type"] : "info";
-        $icon = isset($props["icon"]) ? $props["icon"] : "";
-        $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
-
-        ob_start(); ?>
-            <div class="row" <?php echo printArrayOptions($htmlOptions) ?>>
-                <div class="col">
-                    <?php echo $icon ? "<i class=\"fas fa-$icon\"></i>" : ''; ?>
-                    <div class="alert alert-<?php echo $type; ?>" role="alert">
-                        <?php echo $message; ?>
-                    </div>
+            <?php if ($header) { ?>
+                <div class="cs-card-header<?php echo $type; ?>">
+                    <?php echo $props["header"]; ?>
                 </div>
-            </div>
-        <?php return  ob_get_clean();
-    }
+            <?php } ?>
 
-    // CARD
-    // @props
-    // "header" => "string  header content",
-    // "body" => "string  body content",
-    // "footer" => "string  footer content"
-    // "leftBorder" => "string  left border bootstrap color type (see sustom css for supported)"
-    // "class" => "string css class added to defauls classes",
-    function printCard($props)
-    {
-        $class = isset($props["class"]) ? $props["class"] : "";
-        $header = isset($props["header"]) ? $props["header"] : "";
-        $body = isset($props["body"]) ? $props["body"] : "";
-        $footer = isset($props["footer"]) ? $props["footer"] : "";
-        $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
-        $type = isset($props["type"]) ? "-" . $props["type"] : "";
+            <?php if ($body) { ?>
+                <div class="cs-card-body<?php echo $type; ?>">
+                    <?php echo $props["body"]; ?>
+                </div>
+            <?php } ?>
 
-        ob_start(); ?>
-            <div class="cs-card  <?php echo $class ?? ""; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php if ($footer) { ?>
+                <div class="cs-card-footer<?php echo $type; ?>">
+                    <?php echo $props["footer"]; ?>
+                </div>
+            <?php } ?>
+        </div>
 
-                <?php if ($header) { ?>
-                    <div class="cs-card-header<?php echo $type; ?>">
-                        <?php echo $props["header"]; ?>
-                    </div>
-                <?php } ?>
+    <?php return  ob_get_clean();
+}
 
-                <?php if ($body) { ?>
-                    <div class="cs-card-body<?php echo $type; ?>">
-                        <?php echo $props["body"]; ?>
-                    </div>
-                <?php } ?>
+// MEDIA
+// @props
+// "id" => string id,
+// "title" => string for alt attribute,
+// "class"  => string class for the wrapper
+// "src" => string path
+function printMedia($props)
+{
+    $id = isset($props["id"]) ? $props["id"] : "";
+    $title = isset($props["title"]) ? $props["title"] : "";
+    $class = isset($props["class"]) ? $props["class"] : "cs-media";
+    $src = isset($props["src"]) ? $props["src"] : "";
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
-                <?php if ($footer) { ?>
-                    <div class="cs-card-footer<?php echo $type; ?>">
-                        <?php echo $props["footer"]; ?>
-                    </div>
-                <?php } ?>
-            </div>
+    ob_start(); ?>
+        <div id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
+        </div>
+    <?php return  ob_get_clean();
+}
 
-        <?php return  ob_get_clean();
-    }
+// NAV
+// @props
+// "id" => string id,
+// "class"  => string class for the wrapper
+// "navitems" => structured array with nav items data (id, class, link, submenu),
+function printNav($props, $enableTitle = false)
+{
+    $id = isset($props["id"]) ? $props["id"] : "";
+    $navitems = isset($props["navitems"]) ? $props["navitems"] : [];
+    $class = isset($props["class"]) ? $props["class"] : "cs-nav";
+    $title = isset($props["title"]) ? $props["title"] : "";
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
-    // MEDIA
-    // @props
-    // "id" => string id,
-    // "title" => string for alt attribute,
-    // "class"  => string class for the wrapper
-    // "src" => string path
-    function printMedia($props)
-    {
-        $id = isset($props["id"]) ? $props["id"] : "";
-        $title = isset($props["title"]) ? $props["title"] : "";
-        $class = isset($props["class"]) ? $props["class"] : "cs-media";
-        $src = isset($props["src"]) ? $props["src"] : "";
-        $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+    ob_start();
+    if ($title && $enableTitle)
+        echo printTitle($title);
+    ?>
+        <ul id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php
+            foreach ($navitems as $navitem) {
+                echo printNavItem($navitem);
+            } ?>
+        </ul>
+    <?php return  ob_get_clean();
+}
 
-        ob_start(); ?>
-            <div id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-                <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
-            </div>
-        <?php return  ob_get_clean();
-    }
+// NAVITEM
+// @props
+// "id" => string id,
+// "class"  => string class for the wrapper
+// "link" => structured array with link item data (id, class, url ... ),
 
-    // NAV
-    // @props
-    // "id" => string id,
-    // "class"  => string class for the wrapper
-    // "navitems" => structured array with nav items data (id, class, link, submenu),
-
-    function printNav($props, $enableTitle = false)
-    {
-        $id = isset($props["id"]) ? $props["id"] : "";
-        $navitems = isset($props["navitems"]) ? $props["navitems"] : [];
-        $class = isset($props["class"]) ? $props["class"] : "cs-nav";
-        $title = isset($props["title"]) ? $props["title"] : "";
-        $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
-
-        ob_start(); 
-            if($title && $enableTitle)
-                echo printTitle($title);
-            ?>
-            <ul id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-                <?php
-                foreach ($navitems as $navitem) {
-                    echo printNavItem($navitem);
-                } ?>
-            </ul>
-        <?php return  ob_get_clean();
-    }
-
-    // NAVITEM
-    // @props
-    // "id" => string id,
-    // "class"  => string class for the wrapper
-    // "link" => structured array with link item data (id, class, url ... ),
-
-    function printNavItem($props)
-    {
-        $id = isset($props["id"]) ? $props["id"] : "";
-        $class = isset($props["class"]) ? $props["class"] : "cs-navitem ";
-        $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
-        $navLinkClass = "cs-nav-link";
-        ob_start(); ?>
-            <li id="<?php echo $id; ?>" class="<?php echo $class; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-                <?php
-                $props["link"]["class"] = isset($props["link"]["class"]) ? $props["link"]["class"] : $navLinkClass;
-                $props["link"]["class"] .= isset($props["active"]) && $props["active"] ? " active" : "";
-                echo printLink($props["link"]);
-                if (isset($props["submenu"])) {
-                    echo printNav($props["submenu"]);
-                }
-                ?>
-            </li>
-        <?php return  ob_get_clean();
-    }
-
-    // BTN
-    // @props
-    // "url"  => string url
-    // "label"  => string label
-    // "class"  => string class
-    function printBtn($props)
-    {
-        $btnProps = $props;
-        $btnProps["class"] = isset($btnProps["class"]) ? $btnProps["class"] : "cs-btn";
-
-        return printLink($btnProps);
-    }
-
-    // LINK
-    // @props
-    // "url"  => string url
-    // "label"  => string label
-    // "class"  => string class
-    function printLink($props)
-    {
-        $id = isset($props["id"]) ? $props["id"] : "";
-        $class = isset($props["class"]) ? $props["class"] : "";
-        $url = isset($props["url"]) ? $props["url"] : "#";
-        $label = isset($props["label"]) ? $props["label"] : "";
-        $icon = isset($props["icon"]) ? $props["icon"] : "";
-        $media = isset($props["media"]) ? $props["media"] : "";
-        $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
-
-        ob_start(); ?>
-            <a id="<?php echo $id ?>" class="<?php echo $class ?>" href="<?php echo $url ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-                <?php echo printIcon($icon);
-                if ($label) { ?>
-                    <span><?php echo $label ?></span>
-                <?php }
-                if ($media) {
-                    echo printImg($media);
-                } ?>
-
-            </a>
-        <?php return  ob_get_clean();
-    }
-
-
-    // ICON
-    // @props
-    // icon: string  (font awesome class)
-    function printIcon($icon)
-    {
-        if (!$icon) return;
-        ob_start(); ?>
-            <i class="<?php echo $icon ?>"></i>
-        <?php return  ob_get_clean();
-    }
-
-    // ICON
-    // @props
-    // id: string  (font awesome class)
-    function printImg($props)
-    {
-        $id = isset($props["id"]) ? $props["id"] : "";
-        $title = isset($props["title"]) ? $props["title"] : "";
-        $class = isset($props["class"]) ? $props["class"] : "";
-        $src = isset($props["src"]) ? $props["src"] : "";
-
-        ob_start(); ?>
-            <img id="<?php echo $id ?>" class="<?php echo $class ?>" src="<?php echo $src ?>" alt="<?php echo $title ?>">
-            <?php return  ob_get_clean();
-        }
-
-        // TEXT
-        // @props
-        // "url"  => string url
-        // "label"  => string label
-        // "class"  => string class
-        function printText($paragraphs)
-        {
-            ob_start();
-            foreach ($paragraphs as $p) {
-                $htmlOptions = isset($p["htmlOptions"]) ? $p["htmlOptions"] : []; ?>
-                <p <?php echo printArrayOptions($htmlOptions) ?>><?php echo $p ?></p>
-            <?php }
-            return  ob_get_clean();
-        }
-        // TEXT
-        // @props
-        // "id" => string id
-        // "class"  => string class
-        // "total"  => int total number of stars
-        // "number"  => int number of filled stars
-        // "icon" => string fa icon class
-        // "iconEmpty" => string fa icon class
-        function printStars($props)
-        {
-            $id = isset($props["id"]) ? $props["id"] : "";
-            $class = isset($props["class"]) ? $props["class"] : "cs-section-reviews-stars";
-            $total = isset($props["total"]) ? $props["total"] : 5;
-            $number = isset($props["number"]) ? $props["number"] : 0;
-            $icon = isset($props["icon"]) ? $props["icon"] : "fas fa-star";
-            $iconEmpty = isset($props["iconEmpty"]) ? $props["iconEmpty"] : "far fa-star";
-            ob_start(); ?>
-            <div id="<?php echo $id ?>" class="<?php echo $class ?>">
-                <?php for ($i = 0; $i < $total; $i++) {
-                    if ($i < $number)
-                        echo "<i class='$icon'></i>";
-                    else
-                        echo "<i class='$iconEmpty'></i>";
-                } ?>
-            </div>
-        <?php
-            return  ob_get_clean();
-        }
-
-        // PRINT ARRAY OPTIONS
-        function printArrayOptions($options, $separator = "=", $quotes = '"')
-        {
-            $result = "";
-            foreach ($options as $key => $val) {
-                $result .= $key . $separator . $quotes . $val . $quotes;
+function printNavItem($props)
+{
+    $id = isset($props["id"]) ? $props["id"] : "";
+    $class = isset($props["class"]) ? $props["class"] : "cs-navitem ";
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+    $navLinkClass = "cs-nav-link";
+    ob_start(); ?>
+        <li id="<?php echo $id; ?>" class="<?php echo $class; ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php
+            $props["link"]["class"] = isset($props["link"]["class"]) ? $props["link"]["class"] : $navLinkClass;
+            $props["link"]["class"] .= isset($props["active"]) && $props["active"] ? " active" : "";
+            echo printLink($props["link"]);
+            if (isset($props["submenu"])) {
+                echo printNav($props["submenu"]);
             }
-            return $result;
-        }
+            ?>
+        </li>
+    <?php return  ob_get_clean();
+}
+
+// BTN
+// @props
+// "url"  => string url
+// "label"  => string label
+// "class"  => string class
+function printBtn($props)
+{
+    $btnProps = $props;
+    $btnProps["class"] = isset($btnProps["class"]) ? $btnProps["class"] : "cs-btn";
+
+    return printLink($btnProps);
+}
+
+// LINK
+// @props
+// "url"  => string url
+// "label"  => string label
+// "class"  => string class
+function printLink($props)
+{
+    $id = isset($props["id"]) ? $props["id"] : "";
+    $class = isset($props["class"]) ? $props["class"] : "";
+    $url = isset($props["url"]) ? $props["url"] : "#";
+    $label = isset($props["label"]) ? $props["label"] : "";
+    $icon = isset($props["icon"]) ? $props["icon"] : "";
+    $media = isset($props["media"]) ? $props["media"] : "";
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+
+    ob_start(); ?>
+        <a id="<?php echo $id ?>" class="<?php echo $class ?>" href="<?php echo $url ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+            <?php echo printIcon($icon);
+            if ($label) { ?>
+                <span><?php echo $label ?></span>
+            <?php }
+            if ($media) {
+                echo printImg($media);
+            } ?>
+
+        </a>
+    <?php return  ob_get_clean();
+}
+
+
+// ICON
+// @props
+// icon: string  (font awesome class)
+function printIcon($icon)
+{
+    if (!$icon) return;
+    ob_start(); ?>
+        <i class="<?php echo $icon ?>"></i>
+    <?php return  ob_get_clean();
+}
+
+// IMG
+// @props
+// id: string 
+// class: string 
+// title: string 
+// src: string 
+function printImg($props)
+{
+$id = isset($props["id"]) ? $props["id"] : "";
+$title = isset($props["title"]) ? $props["title"] : "";
+$class = isset($props["class"]) ? $props["class"] : "";
+$src = isset($props["src"]) ? $props["src"] : "";
+
+ob_start(); ?>
+    <img id="<?php echo $id ?>" class="<?php echo $class ?>" src="<?php echo $src ?>" alt="<?php echo $title ?>">
+    <?php return  ob_get_clean();
+}
+
+// TEXT
+// @props
+// "url"  => string url
+// "label"  => string label
+// "class"  => string class
+function printText($paragraphs)
+{
+    ob_start();
+    foreach ($paragraphs as $p) {
+        $htmlOptions = isset($p["htmlOptions"]) ? $p["htmlOptions"] : []; ?>
+        <p <?php echo printArrayOptions($htmlOptions) ?>><?php echo $p ?></p>
+    <?php }
+    return  ob_get_clean();
+}
+// TEXT
+// @props
+// "id" => string id
+// "class"  => string class
+// "total"  => int total number of stars
+// "number"  => int number of filled stars
+// "icon" => string fa icon class
+// "iconEmpty" => string fa icon class
+function printStars($props)
+{
+    $id = isset($props["id"]) ? $props["id"] : "";
+    $class = isset($props["class"]) ? $props["class"] : "cs-section-reviews-stars";
+    $total = isset($props["total"]) ? $props["total"] : 5;
+    $number = isset($props["number"]) ? $props["number"] : 0;
+    $icon = isset($props["icon"]) ? $props["icon"] : "fas fa-star";
+    $iconEmpty = isset($props["iconEmpty"]) ? $props["iconEmpty"] : "far fa-star";
+    ob_start(); ?>
+    <div id="<?php echo $id ?>" class="<?php echo $class ?>">
+        <?php for ($i = 0; $i < $total; $i++) {
+            if ($i < $number)
+                echo "<i class='$icon'></i>";
+            else
+                echo "<i class='$iconEmpty'></i>";
+        } ?>
+    </div>
+<?php
+    return  ob_get_clean();
+}
+
+// PRINT ARRAY OPTIONS
+function printArrayOptions($options, $separator = "=", $quotes = '"')
+{
+    $result = "";
+    foreach ($options as $key => $val) {
+        $result .= $key . $separator . $quotes . $val . $quotes;
+    }
+    return $result;
+}

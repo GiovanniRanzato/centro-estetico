@@ -571,6 +571,26 @@ p {
 .cs-footer-logo .cs-logo:after {
     left: 0.5em;
 }
+.cs-footer-navs{
+    padding-bottom: 2rem;
+}
+/* SECOND FOOTER */
+.cs-second-footer {
+    background-color: var(--primary);
+    font-size: 0.5rem;
+    color: var(--white);
+}
+.cs-second-footer-contents {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.cs-second-footer-contents a{
+    color: var(--white);
+}
+.cs-second-footer-contents a:hover{
+    opacity: 0.75;
+}
 
 @media screen and (min-width: 576px) {
     /* TOPNAV LINK SOCIAL LINK ICON DECORATION */
