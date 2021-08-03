@@ -217,7 +217,7 @@ p {
 
 /* SOCIAL E TOP NAV LINK */
 
-.cs-social-link, .cs-topnav-link {
+.cs-nav-link {
     color: var(--black);
     display: flex;
     align-items: center;
@@ -226,17 +226,26 @@ p {
     position: relative;
 }
 
-.cs-social-link i, .cs-topnav-link i {
+.cs-nav-link i {
     color: var(--primary);
 }
 
-.cs-social-link:hover, .cs-nav-link:hover {
+.cs-nav-link:hover {
     color: var(--primary);
 }
 
-.cs-social-link {
+.cs-nav-link {
     display: flex;
     align-items: center;
+}
+
+.cs-top-nav .cs-social-nav .cs-nav-link span {
+    display: none;
+}
+.cs-footer-nav .cs-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 /* TITLE */
@@ -341,6 +350,7 @@ p {
     margin-bottom: 3rem;
     max-width: 370px;
 }
+
 .cs-section-reviews-contents {
     display: flex;
     flex-wrap: wrap;
@@ -402,6 +412,7 @@ p {
     position: relative;
     text-align: right;
 }
+
 .cs-avatar-card-header .cs-title {
     padding-left: 6rem;
 }
@@ -523,9 +534,47 @@ p {
     transform: rotate(180deg);
 }
 
+/* FOOTER */
+
+.cs-footer-logo {
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.cs-footer-logo  .cs-logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.cs-footer-nav .cs-title {
+    font-size: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.cs-footer-logo .cs-logo:after, .cs-footer-logo .cs-logo:before {
+    content: "";
+    display: inline-block;
+    position: relative;
+    height: var(--line-width);
+    background-color: var(--primary);
+    width: 40%;
+}
+
+.cs-footer-logo .cs-logo:before {
+    right: 0.5em;
+}
+
+.cs-footer-logo .cs-logo:after {
+    left: 0.5em;
+}
+
 @media screen and (min-width: 576px) {
     /* TOPNAV LINK SOCIAL LINK ICON DECORATION */
-    .cs-social-link i, .cs-topnav-link i {
+    .cs-nav-link i {
         display: flex;
         min-width: 2rem;
         height: 2rem;
@@ -534,7 +583,7 @@ p {
         border: var(--line-width) solid var(--primary);
         border-radius: 50%;
     }
-    .cs-topnav-link:hover i, .cs-social-link:hover i {
+    .cs-nav-link:hover i {
         border: var(--line-width) solid var(--secondary);
     }
 }
@@ -601,10 +650,10 @@ p {
         height: 50px;
         background-color: var(--bg-secondary);
     }
-    .cs-social-link, .cs-topnav-link {
+    .cs-nav-link {
         padding: 0.5rem 1rem;
     }
-    .cs-social-link i, .cs-topnav-link i {
+    .cs-nav-link i {
         margin-right: 0.5rem;
     }
     /* MAIN NAV */
@@ -617,7 +666,6 @@ p {
     .cs-main-nav {
         max-height: unset;
     }
-
     .cs-section-reviews-contents .cs-card {
         margin-right: 3rem;
     }

@@ -3,15 +3,18 @@
 $mediaLogo = array(
     "src" => "img/svg/logo.svg",
     "title" => "logo",
+    "class" => "cs-logo"
 );
 $contactsnav = array (
-    "title" => "contatti",
+    "title" => array(
+        "title" => "Contatti",
+        "heading" => 4,
+    ),
     "navitems" => [
     array(
         "id" => "navitem_1",
         "active" => true,
         "link" => array(
-            "class" => "cs-topnav-link",
             "url" => "#",
             "label" => "info@spacenter.it",
             "icon" => "fas fa-envelope"
@@ -20,7 +23,6 @@ $contactsnav = array (
     array(
         "id" => "navitem_2",
         "link" => array(
-            "class" => "cs-topnav-link",
             "url" => "#",
             "label" => "Via roma 10, Abano terme 350001 (PD)",
             "icon" => "fas fa-map-marker"
@@ -29,7 +31,6 @@ $contactsnav = array (
     array(
         "id" => "navitem_3",
         "link" => array(
-            "class" => "cs-topnav-link",
             "url" => "#",
             "label" => "+39  049 123456789",
             "icon" => "fas fa-phone"
@@ -37,35 +38,42 @@ $contactsnav = array (
     ),
 ]);
 $socialnav = array(
-    "title" => "social",
+    "class" => "cs-nav cs-social-nav",
+    "title" => array(
+        "title" => "Social",
+        "heading" => 4,
+    ),
     "navitems"=>[
     array(
         "id" => "social_1",
         "link" => array(
-            "class" => "cs-social-link",
             "url" => "#",
             "icon" => "fab fa-instagram",
+            "label" => "instagram",
         )
     ),
     array(
         "id" => "social_1",
         "link" => array(
-            "class" => "cs-social-link",
             "url" => "#",
             "icon" => "fab fa-facebook-f",
+            "label" => "facebook",
         ),
     ),
     array(
         "id" => "social_1",
         "link" => array(
-            "class" => "cs-social-link",
             "url" => "#",
             "icon" => "fab fa-pinterest-p",
+            "label" => "pinterest",
         ),
     ),
 ]);
 $mainnav = array(
-    "title" => "main",
+    "title" => array(
+        "title" => "Main",
+        "heading" => 4,
+    ),
     "navitems"=>[
     array(
         "id" => "navitem_1",
@@ -98,35 +106,38 @@ $mainnav = array(
     ),
 ]);
 $servicesnav = array(
-    "title" => "servizi",
+    "title" => array(
+        "title" => "Servizi",
+        "heading" => 4,
+    ),
     "navitems"=>[
     array(
         "id" => "navitem_1",
         "active" => true,
         "link" => array(
             "url" => "#",
-            "label" => "Home",
+            "label" => "Massaggi",
         )
     ),
     array(
         "id" => "navitem_2",
         "link" => array(
             "url" => "#",
-            "label" => "Servizi",
+            "label" => "Cura del corpo",
         )
     ),
     array(
         "id" => "navitem_3",
         "link" => array(
             "url" => "#",
-            "label" => "Chi siamo",
+            "label" => "Beauty care",
         ),
     ),
     array(
         "id" => "navitem_4",
         "link" => array(
             "url" => "#",
-            "label" => "Contatti",
+            "label" => "Zona relax",
         ),
     ),
 ]);
@@ -460,9 +471,9 @@ $footer = array(
         array(
             "class" => "cs-footer-contents",
             "logo" => $mediaLogo,
-            "conctactsnav" => $contactsnav,
-            "socialnav" => $socialnav,
-            "servicesnav" =>$servicesnav,
+            "nav1" => $contactsnav,
+            "nav2" => $socialnav,
+            "nav3" => $servicesnav,
             "privacyLink" => array(
                 "url" => "#",
                 "label" => "privacy policy",
