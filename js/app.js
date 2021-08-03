@@ -35,9 +35,24 @@ $(document).ready(function () {
     $("#hamburger").toggleClass("is-active");
     $(".cs-main-nav").toggleClass("is-active");
   });
-  // Counter handler
-  $('.counter-number').countUp({
-    'time': 2000,
-    'delay': 10
+
+  // OWL carousel
+  $(".owl-carousel").owlCarousel({
+    loop: true,
+    margin: 32,
+    responsive: {
+      0: {
+        items: 1
+      },
+      600: {
+        items: 2
+      },
+      1000: {
+        items: 3
+      },
+      1400: {
+        items: 4
+      }
+    }
   });
 });

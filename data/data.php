@@ -1,5 +1,158 @@
 <?php
-// ABOUT
+// DATA  
+$mediaLogo = array(
+    "src" => "img/svg/logo.svg",
+    "title" => "logo",
+);
+$contactsnav = array (
+    "title" => "contatti",
+    "navitems" => [
+    array(
+        "id" => "navitem_1",
+        "active" => true,
+        "link" => array(
+            "class" => "cs-topnav-link",
+            "url" => "#",
+            "label" => "info@spacenter.it",
+            "icon" => "fas fa-envelope"
+        )
+    ),
+    array(
+        "id" => "navitem_2",
+        "link" => array(
+            "class" => "cs-topnav-link",
+            "url" => "#",
+            "label" => "Via roma 10, Abano terme 350001 (PD)",
+            "icon" => "fas fa-map-marker"
+        )
+    ),
+    array(
+        "id" => "navitem_3",
+        "link" => array(
+            "class" => "cs-topnav-link",
+            "url" => "#",
+            "label" => "+39  049 123456789",
+            "icon" => "fas fa-phone"
+        ),
+    ),
+]);
+$socialnav = array(
+    "title" => "social",
+    "navitems"=>[
+    array(
+        "id" => "social_1",
+        "link" => array(
+            "class" => "cs-social-link",
+            "url" => "#",
+            "icon" => "fab fa-instagram",
+        )
+    ),
+    array(
+        "id" => "social_1",
+        "link" => array(
+            "class" => "cs-social-link",
+            "url" => "#",
+            "icon" => "fab fa-facebook-f",
+        ),
+    ),
+    array(
+        "id" => "social_1",
+        "link" => array(
+            "class" => "cs-social-link",
+            "url" => "#",
+            "icon" => "fab fa-pinterest-p",
+        ),
+    ),
+]);
+$mainnav = array(
+    "title" => "main",
+    "navitems"=>[
+    array(
+        "id" => "navitem_1",
+        "active" => true,
+        "link" => array(
+            "url" => "#",
+            "label" => "Home",
+        )
+    ),
+    array(
+        "id" => "navitem_2",
+        "link" => array(
+            "url" => "#",
+            "label" => "Servizi",
+        )
+    ),
+    array(
+        "id" => "navitem_3",
+        "link" => array(
+            "url" => "#",
+            "label" => "Chi siamo",
+        ),
+    ),
+    array(
+        "id" => "navitem_4",
+        "link" => array(
+            "url" => "#",
+            "label" => "Contatti",
+        ),
+    ),
+]);
+$servicesnav = array(
+    "title" => "servizi",
+    "navitems"=>[
+    array(
+        "id" => "navitem_1",
+        "active" => true,
+        "link" => array(
+            "url" => "#",
+            "label" => "Home",
+        )
+    ),
+    array(
+        "id" => "navitem_2",
+        "link" => array(
+            "url" => "#",
+            "label" => "Servizi",
+        )
+    ),
+    array(
+        "id" => "navitem_3",
+        "link" => array(
+            "url" => "#",
+            "label" => "Chi siamo",
+        ),
+    ),
+    array(
+        "id" => "navitem_4",
+        "link" => array(
+            "url" => "#",
+            "label" => "Contatti",
+        ),
+    ),
+]);
+
+// HEADER - TOP BAR
+$topBar = array(
+    "id" => "my-top-bar",
+    "class" => "cs-top-bar",
+    "sectionTag" => "header",
+    "dataType" => "html",
+    "data" =>  printTopBar(
+        array(
+            "class" => "cs-top-bar-contents",
+            "logoLink" => array (
+                "url" => "#",
+                "media" => $mediaLogo,
+            ),
+            "contactsnav" => $contactsnav,
+            "socialnav" => $socialnav,
+            "mainnav" =>$mainnav,
+        )
+    )
+);
+
+
+// SECTION ABOUT
 $sectionAbout =  array(
     "id" => "my-section-about",
     "class" => "cs-section-about",
@@ -34,7 +187,7 @@ $sectionAbout =  array(
     ),
 );
 
-// SLOGAN
+// SECTION SLOGAN
 $sectionSlogan =  array(
     "id" => "my-section-slogan",
     "class" => "cs-z-index-3",
@@ -51,7 +204,7 @@ $sectionSlogan =  array(
 );
 
 
-// FEATURES
+// SECTION FEATURES
 $sectionFeatures =  array(
     "id" => "my-section-features",
     "class" => "cs-section-features",
@@ -77,7 +230,7 @@ $sectionFeatures =  array(
         )
     )
 );
-// SERVICES
+// SECTION SERVICES
 $sectionServices =  array(
     "id" => "my-section-services",
     "class" => "cs-section-services cs-section-waves-bottom cs-section-waves-up",
@@ -98,7 +251,6 @@ $sectionServices =  array(
                 "layoutFunction" => "printMainArticle",
                 "title" => array(
                     "title" => "<span>Massaggi</span> e cura del corpo",
-                    //"class" => "mb-4",
                     "heading" => 3,
                 ),
                 "media" => array(
@@ -120,7 +272,6 @@ $sectionServices =  array(
                 "layoutFunction" => "printMainArticle",
                 "title" => array(
                     "title" => "Makeover & <span>Beauty</span>",
-                    //"class" => "mb-4",
                     "heading" => 3,
                 ),
                 "media" => array(
@@ -142,7 +293,6 @@ $sectionServices =  array(
                 "layoutFunction" => "printMainArticle",
                 "title" => array(
                     "title" => "Zona <span>relax</span>",
-                    //"class" => "mb-4",
                     "heading" => 3,
                 ),
                 "media" => array(
@@ -163,7 +313,7 @@ $sectionServices =  array(
     ),
 );
 
-// REVIEWS
+// SECTION REVIEWS
 $sectionReviews =  array(
     "id" => "my-section-reviews",
     "class" => "cs-section-reviews",
@@ -183,13 +333,16 @@ $sectionReviews =  array(
                         ),
                         "title" => array(
                             "title" => "Laura Celeste",
-                            "caption" => "makeup artist",
+                            "caption" => "recensione",
                             "heading" => 4,
                             "decoration" => "cs-title-line"
                         ),
                     )),
-                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
-                    "footer" => "2",
+                    "body" => "Lorem ipsum dolor!!!!",
+                    "footer" => printStars(array(
+                        "number" => 4,
+                        "total" => 5,
+                    )),
                     "type" => "sm",
                 )),
                 printCard(array(
@@ -202,13 +355,16 @@ $sectionReviews =  array(
                         ),
                         "title" => array(
                             "title" => "Laura Celeste",
-                            "caption" => "makeup artist",
+                            "caption" => "recensione",
                             "heading" => 4,
                             "decoration" => "cs-title-line"
                         ),
                     )),
                     "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
-                    "footer" => "2",
+                    "footer" => printStars(array(
+                        "number" => 5,
+                        "total" => 5,
+                    )),
                     "type" => "sm",
                 )),
                 printCard(array(
@@ -221,170 +377,101 @@ $sectionReviews =  array(
                         ),
                         "title" => array(
                             "title" => "Laura Celeste",
-                            "caption" => "makeup artist",
+                            "caption" => "recensione",
                             "heading" => 4,
                             "decoration" => "cs-title-line"
                         ),
                     )),
                     "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
-                    "footer" => "2",
+                    "footer" => printStars(array(
+                        "number" => 4,
+                        "total" => 5,
+                    )),
                     "type" => "sm",
                 )), 
             ]
-
         )
     )
 );
 
-
-// HEADER
-$topBar = array(
-    "id" => "my-top-bar",
-    "class" => "cs-top-bar",
-    "sectionTag" => "header",
-    "dataType" => "html",
-    "data" =>  printTopBar(
-        array(
-            "class" => "cs-top-bar-contents",
-            "logoLink" => array (
-                "url" => "#",
-                "media" => array(
-                    "src" => "img/svg/logo.svg
-                    ",
-                    "title" => "logo",
-                ),
-            ),
-            "topNav" => array(
-                "navitems" => [
-                    array(
-                        "id" => "navitem_1",
-                        "active" => true,
-                        "link" => array(
-                            "class" => "cs-topnav-link",
-                            "url" => "#",
-                            "label" => "info@spacenter.it",
-                            "icon" => "fas fa-envelope"
-                        )
-                    ),
-                    array(
-                        "id" => "navitem_2",
-                        "link" => array(
-                            "class" => "cs-topnav-link",
-                            "url" => "#",
-                            "label" => "Via roma 10, Abano terme 350001 (PD)",
-                            "icon" => "fas fa-map-marker"
-                        )
-                    ),
-                    array(
-                        "id" => "navitem_3",
-                        "link" => array(
-                            "class" => "cs-topnav-link",
-                            "url" => "#",
-                            "label" => "+39  049 123456789",
-                            "icon" => "fas fa-phone"
-                        ),
-                    ),
-                ]
-            ),
-            "socialNav" => array(
-                "navitems" => [
-                    array(
-                        "id" => "social_1",
-                        "link" => array(
-                            "class" => "cs-social-link",
-                            "url" => "#",
-                            "icon" => "fab fa-instagram",
-                        )
-                    ),
-                    array(
-                        "id" => "social_1",
-                        "link" => array(
-                            "class" => "cs-social-link",
-                            "url" => "#",
-                            "icon" => "fab fa-facebook-f",
-                        ),
-                    ),
-                    array(
-                        "id" => "social_1",
-                        "link" => array(
-                            "class" => "cs-social-link",
-                            "url" => "#",
-                            "icon" => "fab fa-pinterest-p",
-                        ),
-                    ),
-                ],
-            ),
-            "mainNav" => array(
-                "navitems" => [
-                    array(
-                        "id" => "navitem_1",
-                        "active" => true,
-                        "link" => array(
-                            "url" => "#",
-                            "label" => "Home",
-                        )
-                    ),
-                    array(
-                        "id" => "navitem_2",
-                        "link" => array(
-                            "url" => "#",
-                            "label" => "Servizi",
-                        )
-                    ),
-                    array(
-                        "id" => "navitem_3",
-                        "link" => array(
-                            "url" => "#",
-                            "label" => "Chi siamo",
-                        ),
-                    ),
-                    array(
-                        "id" => "navitem_4",
-                        "link" => array(
-                            "url" => "#",
-                            "label" => "Contatti",
-                        ),
-                    ),
-                ]
-            )
-        )
-
-    )
-
-);
-
-// LIST
-$sectionList =  array(
-    "id" => "my-section-reviews",
-    "class" => "cs-section-reviews",
+// SECTION GALLERY
+$sectionGallery =  array(
+    "id" => "my-section-gallery",
+    "class" => "cs-section-gallery",
     "addContainer" => "container",
     "dataType" => "html",
-    "data" =>  printInlineList(
+    "data" =>  printContents(
         array(
-            "class" => "cs-section-reviews-contents",
-            "brakePointType" => "",
-            "elements" => [
-                printCard(array(
-                    "header" => "Header1",
-                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
-                    "footer" => "2",
-                    "type" => "sm",
-                )),
-                printCard(array(
-                    "header" => "Header1",
-                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
-                    "footer" => "2",
-                    "type" => "sm",
-                )),
-                printCard(array(
-                    "header" => "Header1",
-                    "body" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam blanditiis recusandae quam?",
-                    "footer" => "2",
-                    "type" => "sm",
-                )),
- 
+            "class" => "cs-section-gallery-contents owl-carousel owl-theme",
+            "contents" => [
+                printMedia( 
+                    array(
+                        "id" => "img-1",
+                        "title" => "img-1",
+                        "src" => "img/about.jpg",
+                    )
+                ),
+                printMedia( 
+                    array(
+                        "id" => "img-1",
+                        "title" => "img-1",
+                        "src" => "img/about.jpg",
+                    )
+                ),
+                printMedia( 
+                    array(
+                        "id" => "img-1",
+                        "title" => "img-1",
+                        "src" => "img/about.jpg",
+                    )
+                ),
+                printMedia( 
+                    array(
+                        "id" => "img-1",
+                        "title" => "img-1",
+                        "src" => "img/about.jpg",
+                    )
+                ),
+                printMedia( 
+                    array(
+                        "id" => "img-1",
+                        "title" => "img-1",
+                        "src" => "img/about.jpg",
+                    )
+                ),
+                printMedia( 
+                    array(
+                        "id" => "img-1",
+                        "title" => "img-1",
+                        "src" => "img/about.jpg",
+                    )
+                ),
             ]
-
+        )
+    )
+);
+// FOOTER - TOP BAR
+$footer = array(
+    "id" => "my-footer",
+    "class" => "cs-footer",
+    "sectionTag" => "footer",
+    "dataType" => "html",
+    "data" =>  printFooter(
+        array(
+            "class" => "cs-footer-contents",
+            "logo" => $mediaLogo,
+            "conctactsnav" => $contactsnav,
+            "socialnav" => $socialnav,
+            "servicesnav" =>$servicesnav,
+            "privacyLink" => array(
+                "url" => "#",
+                "label" => "privacy policy",
+            ),
+            "cookieLink" => array(
+                "url" => "#",
+                "label" => "cookie policy",
+            ),
+            "copyright" => "Copyright 2021"
         )
     )
 );

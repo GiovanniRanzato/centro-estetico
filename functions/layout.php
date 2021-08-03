@@ -196,16 +196,18 @@ function printInlineList($props)
 // SITE TOP BAR
 // @props
 // "class" => string css class,
-// "brakePointType" => string with bootstrap breakpoint type
-// "elements" => array of html string with element contents,
+// "logoLink" => array with structured  data for link
+// "conctactsnav" => array with structured  data for nav
+// "socialNav" => array with structured  data for nav
+// "mainNav" => array with structured  data for nav
 function printTopBar($props)
 {
     $class = isset($props["class"]) ? $props["class"] : "";
     $logoLink = isset($props["logoLink"]) ? $props["logoLink"] : [];
     $logoLink["class"] = isset($logoLink["class"]) ? $logoLink["class"] : "cs-logo";
-    $topNav = isset($props["topNav"]) ? $props["topNav"] : [];
-    $socialNav = isset($props["socialNav"]) ? $props["socialNav"] : [];
-    $mainNav = isset($props["mainNav"]) ? $props["mainNav"] : [];
+    $contactsnav = isset($props["contactsnav"]) ? $props["contactsnav"] : [];
+    $socialnav = isset($props["socialnav"]) ? $props["socialnav"] : [];
+    $mainnav = isset($props["mainnav"]) ? $props["mainnav"] : [];
 
 
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
@@ -220,11 +222,11 @@ function printTopBar($props)
                 </div>
                 <div class="col-lg-10">
                     <div class="cs-top-nav">
-                        <?php echo printNav($topNav); ?>
-                        <?php echo printNav($socialNav); ?>
+                        <?php echo printNav($contactsnav); ?>
+                        <?php echo printNav($socialnav); ?>
                     </div>
                     <div class="cs-main-nav">
-                        <?php echo printNav($mainNav); ?>
+                        <?php echo printNav($mainnav); ?>
                     </div>
                     <div class="cs-menu-toggler hamburger-container">
                         <button id="hamburger" class="hamburger hamburger--collapse menu-toggler " type="button">
@@ -240,6 +242,52 @@ function printTopBar($props)
     <?php return  ob_get_clean();
 }
 
+// SITE FOOTER
+// @props
+// "class" => string css class,
+// "logoLink" => array with structured  data for link
+// "conctactsnav" => array with structured  data for nav
+// "socialnav" => array with structured  data for nav
+// "servicesnav" => array with structured  data for nav
+function printFooter ($props)
+{
+    $class = isset($props["class"]) ? $props["class"] : "";
+    $logo = isset($props["logoLink"]) ? $props["logoLink"] : [];
+    $logoLink["class"] = isset($logoLink["class"]) ? $logoLink["class"] : "cs-logo";
+    $conctactsnav = isset($props["conctactsnav"]) ? $props["conctactsnav"] : [];
+    $socialNav = isset($props["socialnav"]) ? $props["socialnav"] : [];
+    $servicesnav = isset($props["servicesnav"]) ? $props["servicesnav"] : [];
+
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+
+    ob_start(); ?>
+
+    <div class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <?php echo printMedia($logo); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($conctactsnav); ?>
+                    </div>
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($socialNav); ?>
+                    </div>
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($servicesnav); ?>
+                    </div>
+                    <div class="cs-footer-nav">
+                        <?php echo printNav($conctactsnav); ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php return  ob_get_clean();
+}
 
 // INLINE CARD LIST
 // @props
@@ -479,6 +527,34 @@ function printText($paragraphs)
         $htmlOptions = isset($p["htmlOptions"]) ? $p["htmlOptions"] : []; ?>
         <p <?php echo printArrayOptions($htmlOptions) ?>><?php echo $p ?></p>
 <?php }
+    return  ob_get_clean();
+}
+// TEXT
+// @props
+// "id" => string id
+// "class"  => string class
+// "total"  => int total number of stars
+// "number"  => int number of filled stars
+// "icon" => string fa icon class
+// "iconEmpty" => string fa icon class
+function printStars($props)
+{
+    $id = isset($props["id"]) ? $props["id"] : "";
+    $class = isset($props["class"]) ? $props["class"] : "cs-section-reviews-stars";
+    $total = isset($props["total"]) ? $props["total"] : 5;
+    $number = isset($props["number"]) ? $props["number"] : 0;
+    $icon = isset($props["icon"]) ? $props["icon"] : "fas fa-star";
+    $iconEmpty = isset($props["iconEmpty"]) ? $props["iconEmpty"] : "far fa-star";
+    ob_start(); ?>
+    <div id="<?php echo $id ?>" class="<?php echo $class ?>" >
+    <?php for($i=0; $i < $total; $i++){ 
+        if($i < $number) 
+            echo "<i class='$icon'></i>";
+        else 
+            echo "<i class='$iconEmpty'></i>";
+     } ?>
+    </div>
+<?php 
     return  ob_get_clean();
 }
 
