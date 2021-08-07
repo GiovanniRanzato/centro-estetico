@@ -4,6 +4,7 @@
     --primary: #F8969C;
     --secondary: #FCCECE;
     --black: #262626;
+    --light: #aaa;
     --white: #fff;
     --border-bold-width: 5px;
     --bg-primary: #F8969C77;
@@ -30,6 +31,78 @@ a {
 a:hover {
     color: var(--secondary);
 }
+
+/* FORMS STYLE */
+
+textarea, input, button {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 1.2rem;
+    transition: all 0.4s ease-in-out;
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+    outline: none;
+    background-color: var(--bg-secondary);
+}
+
+.cs-form-group {
+    position: relative;
+    margin-top: 2rem;
+}
+.cs-form-checkbox ,
+.cs-form-action {
+    margin-top: 2rem;
+}
+
+.cs-form-group:last-child {
+    margin-bottom: unset;
+}
+
+.cs-form-label {
+    display: inline-block;
+    position: absolute;
+    padding: 0 0.25rem;
+    background-color: var(--white);
+    top: -25%;
+    left: 1rem;
+}
+
+.cs-form-control {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--light);
+    border-radius: 4rem;
+}
+.cs-form-checkbox {
+    display: flex;
+    align-items: center;
+}
+.cs-form-checkbox-control{
+    margin-right: 0.5rem;
+}
+.cs-form-one-line {
+    position: relative;
+}
+.cs-form-one-line .cs-form-action {
+    position: absolute;
+    margin: 0;
+    right: 0;
+    top: 0;
+    width: 50px;
+    z-index: 2;
+}
+.cs-form-one-line .cs-form-control {
+    padding-right: 3rem;
+}
+.cs-form-one-line .cs-form-action input,
+.cs-form-one-line .cs-form-action .cs-btn{
+    background-color: unset;
+    border: unset;
+    overflow: hidden;
+    color: var(--primary);
+}
+
+
 
 /* GENERLA STYLE */
 
@@ -101,6 +174,15 @@ p {
 .cs-move-up-4 {
     position: relative;
     bottom: 4rem;
+}
+.cs-move-down-2 {
+    position: relative;
+    top: 2rem;
+}
+
+.cs-move-down-4 {
+    position: relative;
+    top: 4rem;
 }
 
 /* HEADER */
@@ -242,11 +324,13 @@ p {
 .cs-top-nav .cs-social-nav .cs-nav-link span {
     display: none;
 }
+
 .cs-footer-nav .cs-nav {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
+
 .cs-footer-nav .cs-nav-link i {
     margin: 0 0.5rem;
 }
@@ -501,6 +585,20 @@ p {
     padding: 0.5rem 1rem;
     border: var(--line-width) solid var(--primary);
     color: var(--primary);
+    display: inline-block;
+    width: 100%;
+}
+
+.cs-btn-primary {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 2rem;
+    padding: 0.5rem 1rem;
+    border: var(--line-width) solid var(--primary);
+    color: var(--white);
+    background: var(--primary);
 }
 
 /* WAVES  */
@@ -539,18 +637,27 @@ p {
 
 /* FOOTER */
 
+.cs-section-contacts {
+    background-color: var(--white);
+}
+
+/* FOOTER */
+.cs-section-footer {
+    padding-top: 4rem;
+}
 .cs-footer-logo {
     margin: 2rem 0;
     display: flex;
     justify-content: center;
 }
 
-.cs-footer-logo  .cs-logo {
+.cs-footer-logo .cs-logo {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
 }
+
 .cs-footer-nav .cs-title {
     font-size: 1rem;
     text-align: center;
@@ -574,24 +681,30 @@ p {
 .cs-footer-logo .cs-logo:after {
     left: 0.5em;
 }
-.cs-footer-navs{
+
+.cs-footer-navs {
     padding-bottom: 2rem;
 }
+
 /* SECOND FOOTER */
+
 .cs-second-footer {
     background-color: var(--primary);
     font-size: 0.5rem;
     color: var(--white);
 }
+
 .cs-second-footer-contents {
     padding: 0.5rem;
     display: flex;
     justify-content: space-between;
 }
-.cs-second-footer-contents a{
+
+.cs-second-footer-contents a {
     color: var(--white);
 }
-.cs-second-footer-contents a:hover{
+
+.cs-second-footer-contents a:hover {
     opacity: 0.75;
 }
 
@@ -609,6 +722,9 @@ p {
     .cs-nav-link:hover i {
         border: var(--line-width) solid var(--secondary);
     }
+    .cs-section-footer {
+        padding-top: 6rem;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -618,6 +734,7 @@ p {
         margin-bottom: unset;
     }
     .cs-btn {
+        width: unset;
         display: inline-block;
         padding: 0.5rem 2rem;
     }
@@ -627,6 +744,16 @@ p {
     .cs-main-article:last-child {
         margin-bottom: unset;
     }
+    .cs-form-one-line .cs-form-action,
+    .cs-form-one-line .cs-form-action{
+    width: unset;
+    }
+    .cs-form-one-line .cs-form-action input,
+.cs-form-one-line .cs-form-action .cs-btn{
+width: unset;
+padding: 0.5rem 1rem;
+}
+
     /* HEADER */
     .cs-top-bar::before {
         content: "";

@@ -106,6 +106,7 @@ function printMainArticle($props)
     $media = isset($props["media"]) ? $props["media"] : [];
     $text = isset($props["text"]) ? $props["text"] : [];
     $action = isset($props["action"]) ? $props["action"] : [];
+    $form = isset($props["form"]) ? $props["form"] : [];
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
@@ -124,11 +125,14 @@ function printMainArticle($props)
                     echo printTitle($title);
                 if ($text)
                     echo printText($text);
+                if ($form)
+                    echo printForm($form);
                 if ($action) { ?>
                     <div class="cs-main-article-contents-actions">
                         <?php echo printBtn($action); ?>
                     </div>
                 <?php } ?>
+                
             </div>
         </div>
     </div>
@@ -256,6 +260,7 @@ $logo = isset($props["logo"]) ? $props["logo"] : [];
 $nav1 = isset($props["nav1"]) ? $props["nav1"] : [];
 $nav2 = isset($props["nav2"]) ? $props["nav2"] : [];
 $nav3 = isset($props["nav3"]) ? $props["nav3"] : [];
+$form = isset($props["form"]) ? $props["form"] : [];
 $copyright = isset($props["copyright"]) ? $props["copyright"] : "";
 $privacyLink = isset($props["privacyLink"]) ? $props["privacyLink"] : "";
 $cookieLink = isset($props["cookieLink"]) ? $props["cookieLink"] : "";
@@ -287,7 +292,7 @@ ob_start(); ?>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <div class="cs-footer-nav">
-                        <?php echo printNav($nav3, true); ?>
+                        <?php echo printForm($form, true); ?>
                     </div>
                 </div>
             </div>
@@ -587,3 +592,118 @@ function printArrayOptions($options, $separator = "=", $quotes = '"')
     }
     return $result;
 }
+
+// FORM
+// @props
+// "action"  => string 
+// "name"  => string 
+// "method"  => string class
+// "formFields"  => array
+// "htmlOptions"  => array
+function printForm($props, $enableTitle = false)
+{
+    $id = isset($props["id"]) ? $props["id"] : "";
+    $class = isset($props["class"]) ? $props["class"] : "cs-form";
+    $action = isset($props["action"]) ? $props["action"] : "";
+    $name = isset($props["name"]) ? $props["name"] : "form";
+    $method = isset($props["method"]) ? $props["method"] : "get";
+    $title = isset($props["title"]) ? $props["title"] : "";
+    $addSubmit = isset($props["addSubmit"]) ? $props["addSubmit"] : false;
+    $formFields = isset($props["formFields"]) ? $props["formFields"] : [];
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+    ob_start(); 
+    if ($title && $enableTitle)
+        echo printTitle($title);
+    ?>
+    <form id="<?php echo $id ?>" class="<?php echo $class ?>" action="<?php echo $action ?>" name="<?php echo $name ?>" method="<?php echo $method ?>" <?php echo printArrayOptions($htmlOptions) ?> >
+    <?php 
+        foreach ($formFields as $input) {
+            echo printInput($input);
+        }
+        if($addSubmit)
+            echo printInput ( array("type"=>"submit", "value"=>"invia") );
+    ?>    
+    </form>
+    <?php
+    return  ob_get_clean();
+}
+
+// INPUT
+// @props
+// "id" => string id
+// "class"  => string class
+// "label"  => istring
+// "value"  => string
+// "required" => boolean
+// "placeholder" => string 
+function printInput($props)
+{  
+    $type = isset($props["type"]) ? $props["type"] : "text";
+    $name = isset($props["name"]) ? $props["name"] : "";
+    $label = isset($props["label"]) ? $props["label"] : "";
+    $value = isset($props["value"]) ? $props["value"] : "";
+    $form = isset($props["form"]) ? $props["form"] : "";
+    $required = isset($props["required"]) ? $props["required"] : "";
+    $placeholder = isset($props["placeholder"]) ? $props["placeholder"] : "";
+    
+    ob_start();
+    switch ($type) { 
+        case "submit": ?>
+                <div class="cs-form-group cs-form-action" >
+                <input 
+                type="<?php echo $type?>" 
+                class="cs-btn cs-btn-primary" 
+                value="<?php echo $value?>" >
+            </div>   
+        <?php break;
+        case "submit-btn": ?>
+            <div class="cs-form-group cs-form-action" >
+            <button 
+            type="submit" 
+            form = "<?php echo $form?>"
+            class="cs-btn cs-btn-primary" 
+            value="Submit" ><?php echo $label?>
+            </button>
+            
+        </div>   
+        <?php break;
+        case "checkbox": ?>
+        <div class="cs-form-checkbox">
+            <input 
+                class="cs-form-checkbox-control" 
+                type="<?php echo $type?>" 
+                value="<?php echo $value?>" 
+                name="<?php echo $name?>" 
+                placeholder="<?php echo $placeholder?>" 
+                <?php echo $required ? "required" : "" ?> >
+            <label 
+                class="cs-form-checkbox-label" 
+                for="<?php echo $name?>">
+                <?php echo $label?>
+            </label>
+        </div>
+        <?php break;
+        case "text":
+        case "email":
+        case "tel":
+        case "number": 
+        default: ?>
+            <div class="cs-form-group">
+                <label 
+                    class="cs-form-label" 
+                    for="<?php echo $name?>">
+                    <?php echo $label?>
+                </label>
+                <input 
+                    class="cs-form-control" 
+                    type="<?php echo $type?>" 
+                    value="<?php echo $value?>" 
+                    name="<?php echo $name?>" 
+                    placeholder="<?php echo $placeholder?>" 
+                    <?php echo $required ? "required" : "" ?> >
+            </div>
+    <?php break;
+    }
+    return  ob_get_clean();
+}
+

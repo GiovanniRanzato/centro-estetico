@@ -16,7 +16,5 @@ echo printSection($sectionFeatures);
 echo printSection($sectionServices);
 echo printSection($sectionReviews);
 echo printSection($sectionGallery);
-
-?>
-
-<?php include "footer.php"; ?>
+echo printSection($sectionContacts);
+include "footer.php"; ?>
