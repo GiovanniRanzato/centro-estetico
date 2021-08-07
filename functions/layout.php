@@ -6,6 +6,7 @@
 // "data" => string html for contents or structured array with data contents
 // "dataType" => "string" ("html" to print preformatted html string "structureData" to print structured data array with layout functions)
 // "htmlOptions" => array(options for wrapper)
+// )
 function printSection($props)
 {
     $id = isset($props["id"]) ? $props["id"] : "";
@@ -69,6 +70,7 @@ function printContents($props)
 // "class"  => string class for the wrapper
 // "heading" => number 1-6 (default: 1 for h1)
 // "decoration" => string class name for decoration
+// )
 function printTitle($props)
 {
     $title = isset($props["title"]) ? $props["title"] : "";

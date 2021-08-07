@@ -128,9 +128,9 @@ p {
 
 .cs-top-nav {
     position: absolute;
+    padding: 0 0.5rem;
     top: 0;
     right: 70px;
-    height: 50px;
     background-color: var(--bg-secondary);
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
@@ -149,11 +149,11 @@ p {
     transition: all 0.5s ease-in-out;
     max-height: 0;
     overflow: hidden;
-    padding-top: 1rem;
 }
 
 .cs-main-nav.is-active {
     max-height: 100vh;
+    padding-top: 1rem;
 }
 
 .cs-main-nav .cs-nav {
@@ -246,6 +246,9 @@ p {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+}
+.cs-footer-nav .cs-nav-link i {
+    margin: 0 0.5rem;
 }
 
 /* TITLE */
@@ -659,6 +662,9 @@ p {
     }
     .cs-top-nav span {
         display: unset;
+    }
+    .cs-top-nav {
+        height: 50px;
     }
     .cs-top-nav:after {
         content: "";
