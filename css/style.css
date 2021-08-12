@@ -816,6 +816,9 @@ p {
         background: linear-gradient(var(--linear-gradient-dark)), url("../img/hero-index-tablet.jpg" )  no-repeat;
         background-size: cover;
     }
+    #img-1 img{
+        object-position: 0 -120px;
+    }
     /* TOPNAV LINK SOCIAL LINK ICON DECORATION */
     .cs-nav-link i {
         display: flex;
@@ -842,6 +845,9 @@ p {
         background: linear-gradient(var(--linear-gradient-dark)), url("../img/hero-index.jpg" )  no-repeat;
         background-size: cover;
     }
+    #img-1 img{
+        object-position: unset;
+    }
     .cs-section-hero .container
     {
         padding-top: 150px;
@@ -849,7 +855,7 @@ p {
     .cs-media {
         height: 100%;
     }
-    
+
     .cs-main-article-row .cs-media {
         position: absolute;
         max-height: unset;
