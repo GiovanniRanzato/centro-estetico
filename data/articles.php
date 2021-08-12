@@ -167,17 +167,17 @@ $staffMembers = array(
     array(
         "title" => array(
             "title" => "Laura Celeste",
-            "caption" => "recensione",
+            "caption" => "make up artist",
             "heading" => 4,
             "decoration" => "cs-title-line"
         ),
         "media" =>  $media["staff-1"],
-        "text" => "Lorem ipsum dolor!",
+        "text" => "Lorem ipsum dolor! Neque perferendis voluptatem, nihil rem cumque soluta? Neque perferendis voluptatem, nihil rem cumque soluta?",
     ),
     array(
         "title" => array(
             "title" => "Laura Celeste",
-            "caption" => "recensione",
+            "caption" => "make up artist",
             "heading" => 4,
             "decoration" => "cs-title-line"
         ),
@@ -187,7 +187,7 @@ $staffMembers = array(
     array(
         "title" => array(
             "title" => "Laura Celeste",
-            "caption" => "recensione",
+            "caption" => "massagiatore",
             "heading" => 4,
             "decoration" => "cs-title-line"
         ),
@@ -197,31 +197,31 @@ $staffMembers = array(
     array(
         "title" => array(
             "title" => "Laura Celeste",
-            "caption" => "recensione",
+            "caption" => "massagiatore",
             "heading" => 4,
             "decoration" => "cs-title-line"
         ),
         "media" =>  $media["staff-4"],
-        "text" => "Lorem ipsum dolor!",
+        "text" => "Lorem ipsum dolor! Neque perferendis voluptatem, nihil rem cumque soluta?",
     ),
     array(
         "title" => array(
             "title" => "Laura Celeste",
-            "caption" => "recensione",
+            "caption" => "estetista",
             "heading" => 4,
             "decoration" => "cs-title-line"
         ),
         "media" =>  $media["staff-5"],
-        "text" => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque perferendis voluptatem, nihil rem cumque soluta?",
+        "text" => "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque perferendis voluptatem, nihil rem cumque soluta? Neque perferendis voluptatem, nihil rem cumque soluta?",
     ),
     array(
         "title" => array(
             "title" => "Laura Celeste",
-            "caption" => "recensione",
+            "caption" => "estetista",
             "heading" => 4,
             "decoration" => "cs-title-line"
         ),
         "media" =>  $media["staff-6"],
-        "text" => "Lorem ipsum dolor sit amet consectetur adipisicing elit.",
+        "text" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque perferendis voluptatem, nihil rem cumque soluta?",
     ),
 );
