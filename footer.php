@@ -41,11 +41,11 @@ $footer = array(
                 "formFields" => $formNewsletter,
             ),
             "privacyLink" => array(
-                "url" => "#",
+                "url" => "privacy.php",
                 "label" => "privacy policy",
             ),
             "cookieLink" => array(
-                "url" => "#",
+                "url" => "privacy.php",
                 "label" => "cookie policy",
             ),
             "copyright" => "Copyright 2021"

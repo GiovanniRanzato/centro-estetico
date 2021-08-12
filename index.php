@@ -4,7 +4,6 @@ $active =  basename(__FILE__);
 include "header.php";
 include "data/indexData.php";
 
-
 echo printSection($sectionHero);
 echo printSection($sectionAbout);
 echo printSection($sectionSlogan);
