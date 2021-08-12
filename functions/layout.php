@@ -246,6 +246,44 @@ function printTopBar($props)
     <?php return  ob_get_clean();
 }
 
+// HERO SECTIONO
+// @props
+// "id" => string
+// "class" => string css class,
+// "title" => array with structured  data for title
+// "text" => array with structured  data for text
+// "cta1" => array with structured  data for cta1
+// "cta2" => array with structured  data for cta2
+function printHero($props)
+{
+
+$wrapperAttributes = printWrapperAttributes($props);
+
+$title = isset($props["title"]) ? $props["title"] : [];
+$text = isset($props["text"]) ? $props["text"] : [];
+$cta1 = isset($props["cta1"]) ? $props["cta1"] : [];
+$cta2 = isset($props["cta2"]) ? $props["cta2"] : [];
+
+ob_start(); ?>
+
+    <div <?php echo $wrapperAttributes ?>>
+        <div class="cs-section-hero-title">
+        <?php 
+            echo printTitle($title);
+            echo printText($text);
+            ?>
+        </div>
+        <?php if($cta1 || $cta2) { ?>
+            <div class="cs-section-hero-actions">
+            <?php 
+                echo $cta1 ? printBtn($cta1) : "";
+                echo $cta2 ? printBtn($cta2) : "";
+            ?>
+            </div>
+         <?php }
+     return  ob_get_clean();
+}
+
 // SITE FOOTER
 // @props
 // "class" => string css class,
@@ -407,11 +445,19 @@ function printMedia($props)
     $title = isset($props["title"]) ? $props["title"] : "";
     $class = isset($props["class"]) ? $props["class"] : "cs-media";
     $src = isset($props["src"]) ? $props["src"] : "";
+    $type = isset($props["type"]) ? $props["type"] : "";
+    $iframe = isset($props["iframe"]) ? $props["iframe"] : "";
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
         <div id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
-            <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
+            <?php switch($type){
+                case "iframe": 
+                    echo $iframe;
+                    break;
+                default: ?> 
+                    <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
+            <?php } ?>
         </div>
     <?php return  ob_get_clean();
 }
@@ -427,6 +473,7 @@ function printNav($props, $enableTitle = false)
     $navitems = isset($props["navitems"]) ? $props["navitems"] : [];
     $class = isset($props["class"]) ? $props["class"] : "cs-nav";
     $title = isset($props["title"]) ? $props["title"] : "";
+    $active = isset($props["active"]) ? $props["active"] : "";
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start();
@@ -436,6 +483,7 @@ function printNav($props, $enableTitle = false)
         <ul id="<?php echo $id ?>" class="<?php echo $class ?>" <?php echo printArrayOptions($htmlOptions) ?>>
             <?php
             foreach ($navitems as $navitem) {
+                $navitem["active"] = isset($navitem["link"]["url"]) && $navitem["link"]["url"] == $active ? true : false;
                 echo printNavItem($navitem);
             } ?>
         </ul>
@@ -591,6 +639,15 @@ function printArrayOptions($options, $separator = "=", $quotes = '"')
         $result .= $key . $separator . $quotes . $val . $quotes;
     }
     return $result;
+}
+// PRINT WRAPPER ATTRIBUTES: id class htmlOptions
+function printWrapperAttributes($props){
+    $attributes = [];
+    $attributes["id"] = isset($props["id"]) ? $props["id"] : "";
+    $attributes["class"] = isset($props["class"]) ? $props["class"] : "";
+    $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
+    array_merge($attributes, $htmlOptions);
+    return printArrayOptions($attributes);
 }
 
 // FORM

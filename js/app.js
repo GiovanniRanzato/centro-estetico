@@ -1,6 +1,6 @@
 $(document).ready(function () {
   var scroll = $(window).scrollTop();
-  if (scroll >= 100) {
+  if (scroll >= 20) {
     $(".cs-top-bar-contents").addClass("scrolled");
   }
 

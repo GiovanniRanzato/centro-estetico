@@ -1,15 +1,26 @@
 <?php 
 include "functions/layout.php";
 include "./data/data.php";
+$mainnav["active"] = $active;
 $title = $title ?? "";
-
-define("APPNAME", "web-app");
-$nome = "Giovanni";
-$cognome = "Ranzato";
-$eta = "35";
-$errore = "";
-$messaggio = "Nessun errore!";
-$invertiCard = true;
+$topBar = array(
+    "id" => "my-top-bar",
+    "class" => "cs-top-bar",
+    "sectionTag" => "header",
+    "dataType" => "html",
+    "data" =>  printTopBar(
+        array(
+            "class" => "cs-top-bar-contents",
+            "logoLink" => array(
+                "url" => "#",
+                "media" => $mediaLogo,
+            ),
+            "contactsnav" => $contactsnav,
+            "socialnav" => $socialnav,
+            "mainnav" => $mainnav,
+        )
+    )
+);
 
 ?>
 <!DOCTYPE html>

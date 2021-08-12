@@ -1,15 +1,11 @@
 <?php
 $title = "index";
+$active =  basename(__FILE__); 
 include "header.php";
-?>
-<section id="my-section-hero" style="height:800px; background:#FCCECE">
-    <div>
-        <h1>CSPA</h1>
-        <p>Lorem ipsum</p>
-    </div>
+include "data/indexData.php";
 
-</section>
-<?php
+
+echo printSection($sectionHero);
 echo printSection($sectionAbout);
 echo printSection($sectionSlogan);
 echo printSection($sectionFeatures);
