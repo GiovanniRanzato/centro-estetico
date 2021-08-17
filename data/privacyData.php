@@ -24,3 +24,29 @@ $sectionPrivacy =  array(
         ]
     ),
 );
+
+$sectionCredits =  array(
+    "id" => "my-section-privacy",
+    "class" => "cs-section-privacy",
+    "addContainer" => "container",
+    "data" =>  array(
+        "class" => "cs-move-down-4",
+        "contents" => [
+            array(
+                "class" => "cs-section-privact-contents",
+                "layoutFunction" => "printCard",
+
+                "header" => printTitle (
+                    array(
+                        "title" => "Credits",
+                        "caption" => "Credits",
+                        "heading" => 1,
+                        "decoration" => "cs-title-line"
+                    )
+                ),
+                "body" => printText (["beauty by angelina fara from the Noun Project","wellness by ardiezt from the Noun Project","spa by Akshar Pathak from the Noun Project"]),
+
+            )
+        ]
+    ),
+);

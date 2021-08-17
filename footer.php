@@ -48,6 +48,10 @@ $footer = array(
                 "url" => "privacy.php",
                 "label" => "cookie policy",
             ),
+            "creditsLink" => array(
+                "url" => "credits.php",
+                "label" => "credits",
+            ),
             "copyright" => "Copyright 2021"
         )
     )
@@ -60,7 +64,9 @@ echo printSection($footer);
 <script src="js/app.js"></script>
 <!-- owl carusel -->
 <script src="js/owl.carousel.min.js"></script>
+<!-- FANCYBOX  -->
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
 <!-- fancyapps -->
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script> -->
 </body>
 </html>

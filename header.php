@@ -42,8 +42,10 @@ $topBar = array(
     <!-- owl carousel -->
     <link rel="stylesheet" href="css/owl.carousel.min.css">
     <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <!-- FANCYBOX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
     <!-- fancyapps -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" /> -->
     <!-- bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- hamburgers Custom CSS -->

@@ -84,15 +84,18 @@ $sectionFeatures =  array(
             "features" => [
                 array(
                     "title" => "welness",
-                    "icon" => "fas fa-hand-holding-heart",
+                    //"icon" => "fas fa-hand-holding-heart",
+                    "media" => $media["features-1"],
                 ),
                 array(
                     "title" => "beauty",
-                    "icon" => "fas fa-palette",
+                    //"icon" => "fas fa-palette",
+                    "media" => $media["features-2"],
                 ),
                 array(
-                    "title" => "comfort",
-                    "icon" => "fas fa-couch",
+                    "title" => "relax",
+                    //"icon" => "fas fa-couch",
+                    "media" => $media["features-3"],
                 ),
             ]
         )

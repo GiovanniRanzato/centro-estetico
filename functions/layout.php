@@ -156,10 +156,18 @@ function printFeatures($props)
             <?php foreach ($elements as $e) { ?>
                 <div class="col-md-<?php echo $breakPoints ?>">
                     <div class="cs-feature">
-                        <div class="cs-feature-icon">
-                            <i class="fas fa-<?php echo $e["icon"] ?>"></i>
-                        </div>
-                        <?php echo $e["title"] ?>
+                        <?php if(isset($e["media"]) && $e["media"]) { ?>
+                            <div class="cs-feature-media"> 
+                                <img src="<?php echo $e["media"]["src"]; ?>">
+                            </div>
+                        <?php } else if(isset($e["icon"]) && $e["icon"]) { ?>
+                            <div class="cs-feature-icon">
+                                <i class="fas fa-<?php echo $e["icon"] ?>"></i>
+                            </div>
+                        <?php }
+
+
+                        echo $e["title"] ?>
                     </div>
                 </div>
             <?php } ?>
@@ -302,6 +310,7 @@ $form = isset($props["form"]) ? $props["form"] : [];
 $copyright = isset($props["copyright"]) ? $props["copyright"] : "";
 $privacyLink = isset($props["privacyLink"]) ? $props["privacyLink"] : "";
 $cookieLink = isset($props["cookieLink"]) ? $props["cookieLink"] : "";
+$creditsLink = isset($props["creditsLink"]) ? $props["creditsLink"] : "";
 
 $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
@@ -339,7 +348,7 @@ ob_start(); ?>
             <div class="container">
                 <div class="cs-second-footer-contents">
                     <span><?php echo $copyright; ?></span>
-                    <span><?php echo printLink($privacyLink)." - ".printLink($cookieLink); ?></span>
+                    <span><?php echo printLink($creditsLink)." - ".printLink($privacyLink)." - ".printLink($cookieLink); ?></span>
                 </div>
             </div>
         </div>
@@ -447,6 +456,8 @@ function printMedia($props)
     $src = isset($props["src"]) ? $props["src"] : "";
     $type = isset($props["type"]) ? $props["type"] : "";
     $iframe = isset($props["iframe"]) ? $props["iframe"] : "";
+    $galleryItemProps = isset($props["galleryItemProps"]) ? $props["galleryItemProps"] : array("data-fancybox"=>"gallery", "data-caption"=>$title);
+    
     $htmlOptions = isset($props["htmlOptions"]) ? $props["htmlOptions"] : [];
 
     ob_start(); ?>
@@ -455,6 +466,11 @@ function printMedia($props)
                 case "iframe": 
                     echo $iframe;
                     break;
+                case "gallery-item": ?>
+                        <a href="<?php echo $src ?>"  <?php echo printArrayOptions($galleryItemProps); ?>>
+                            <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
+                        </a>
+                    <?php break;
                 default: ?> 
                     <img src="<?php echo $src ?>" alt="<?php echo $title ?>">
             <?php } ?>

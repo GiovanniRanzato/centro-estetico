@@ -96,17 +96,34 @@ $media = array(
         "title" => "about us",
         "src" => "img/about-us-3.jpg",
     ),
+    "features-1" =>     array(
+        "id" => "features-media-1",
+        "title" => "welness",
+        "src" => "img/svg/wellness.svg",
+    ),
+    "features-2" =>     array(
+        "id" => "features-media-2",
+        "title" => "beauty",
+        "src" => "img/svg/beauty.svg",
+    ),
+    "features-3" =>     array(
+        "id" => "features-media-3",
+        "title" => "relax",
+        "src" => "img/svg/relax.svg",
+    ),
 );
 $mediaLogo = $media["logo"];
 
 
-$mediaGallery = [
+$mediaGallery = array (
     $media["services-1"],
     $media["services-2"],
     $media["services-3"],
     $media["services-4"],
     $media["about"],
     $media["contacts-form"],
-];
-
+);
+foreach ($mediaGallery as $galleryItemKey => $galleryItem){
+    $mediaGallery[$galleryItemKey]["type"] = "gallery-item";
+}
 
